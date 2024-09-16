@@ -17,7 +17,14 @@ $container = new Container();
 $router    = new Router($container);
 
 // register some routes
-$router->get('/home',[HomeController::class,'index']);
+$router->listRouteControllers(
+    [
+        HomeController::class,
+        InvoiceController::class,
+    ]
+);
+
+
 
 (new App(
     $container,
