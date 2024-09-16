@@ -27,29 +27,19 @@ class Router{
         {
             $reflectionController = new \ReflectionClass($controller);
           
-
-           
             foreach($reflectionController->getMethods() as $method)
             {
-
-
                 $attributes = $method->getAttributes(Route::class,\ReflectionAttribute::IS_INSTANCEOF);
                 
-                 foreach($attributes as $attribute){
+                 foreach($attributes as $attribute)
+                 {
               
                     $route = $attribute->newInstance();
             
-                    $this->register($route->method->value,$route->routePath,[$controller,$method->name]);
-                   
-            
-                 
-                 }
-               
+                    $this->register($route->method->value,$route->routePath,[$controller,$method->name]);                       
+                 }    
             }
-           
         }
-      
-     
     }
 
     public function get(string $route, array $action):Router
